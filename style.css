@@ -27,6 +27,52 @@ header h1 { text-align: center; margin: 5px 0; font-size: 18px; }
     width: 100%; padding: 12px; box-sizing: border-box; border: 2px solid var(--primary); 
     margin-bottom:15px; background: #fff; border-radius: 25px; transition: all 0.3s ease; outline: none;
 }
+/* --- 1. Iftiinka Guryaha Magaca iyo Lambarka (Focus Effect) --- */
+.reg-card input {
+    transition: all 0.3s ease-in-out;
+    border: 2px solid #ddd;
+}
+
+.reg-card input:focus {
+    border-color: var(--primary);
+    /* Iftiin cagaar ah oo hareeraha ka soo baxa */
+    box-shadow: 0 0 15px rgba(4, 91, 67, 0.4); 
+    transform: translateY(-2px); /* Wax yar ayuu kor u soo kacayaa */
+    background-color: #f9fffb; /* Midabka dhexda oo xoogaa isbedela */
+}
+
+/* --- 2. Dhaqdhaqaaqa Button-yada marka la taabto (Interactive Buttons) --- */
+/* Tan waxay u shaqaynaysaa dhammaan button-yada: Main, Dalbo, iyo Chat */
+button, .main-btn, .dalbo-btn, #chat-icon, nav span {
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Marka la riixo (Click ama Tap) */
+button:active, .main-btn:active, .dalbo-btn:active, #chat-icon:active, nav span:active {
+    transform: scale(0.92); /* Inuu yaraado sidii wax la riixay */
+    box-shadow: inset 0 3px 5px rgba(0,0,0,0.2); /* Hoos u dhac gudaha ah */
+}
+
+/* Marka mouse-ka la saaro (Laptop ahaan) */
+@media (hover: hover) {
+    .main-btn:hover, .dalbo-btn:hover {
+        filter: brightness(1.1);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+}
+
+/* Animation yar oo ruxid ah marka la riixo (Optional) */
+@keyframes button-push {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+.push-animation {
+    animation: button-push 0.2s linear;
+}
 #search:focus { box-shadow: 0 0 20px #101010, 0 0 7px var(--primary); border-color: #f7f9f7; }
 
 .container { padding: 17px; padding-bottom: 100px; }
