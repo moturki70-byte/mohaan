@@ -1,0 +1,75 @@
+:root { --primary: #045b43; --secondary: #9ca4a2; --bg: #045b43; --green: #28a745; --orange: #f37e09; }
+body{font-family: 'Segoe UI', Arial, sans-serif; margin:0; background: var(--bg); color:#0f0f0f; height: 100vh; overflow-x: hidden; overflow-y: auto;}
+
+.main-btn, .dalbo-btn {
+    background: var(--primary);
+    color: #fff;
+    padding: 14px;
+    width: 100%;
+    border-radius: 30px; 
+    font-weight: bold;
+    cursor: pointer;
+    border: 4px solid #fbfbfd; 
+    transition: all 0.3s ease;
+    outline: none;
+    text-transform: uppercase;
+}
+
+#chat-window button:active { background: #0000CD !important; transform: scale(0.9); }
+.dalbo-btn { padding: 8px; font-size: 9px; margin-top: 5px; border-width: 3px; }
+.main-btn:active, .dalbo-btn:active { transform: scale(0.95); }
+
+header { background: var(--primary); color: #fff; padding: 10px; position: sticky; top: 0; z-index: 1000; }
+.user-info-bar { background: rgba(0,0,0,0.15); padding: 8px; border-radius: 8px; font-size: 11px; display: flex; justify-content: space-between; margin-bottom: 10px; }
+header h1 { text-align: center; margin: 5px 0; font-size: 18px; }
+
+#search {
+    width: 100%; padding: 12px; box-sizing: border-box; border: 2px solid var(--primary); 
+    margin-bottom:15px; background: #fff; border-radius: 25px; transition: all 0.3s ease; outline: none;
+}
+#search:focus { box-shadow: 0 0 20px #101010, 0 0 7px var(--primary); border-color: #f7f9f7; }
+
+.container { padding: 17px; padding-bottom: 100px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; overflow-x: hidden; }
+
+nav { display: flex; justify-content: center; gap: 10px; overflow-x: auto; padding: 5px 0; scrollbar-width: none; }
+nav span { cursor: pointer; font-size: 11px; padding: 5px 10px; border-radius: 20px; background: rgba(255,255,255,0.1); white-space: nowrap; }
+nav span.active { background: var(--secondary); color: white; font-weight: bold; }
+
+.card { background: #fff; padding: 8px; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; flex-direction: column; text-align: center; border: 1px solid #eee; position: relative; }
+.card h4 { margin: 5px 0; font-size: 10px; height: 30px; overflow: hidden; line-height: 1.2; }
+.hidden { display: none !important; }
+
+#chat-icon {
+    position: fixed; bottom: 20px; right: 20px; background: #057b5a; color: white;
+    width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 30px; cursor: pointer; z-index: 9999; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+#chat-input { flex: 1; border: 1px solid #ddd; border-radius: 20px; padding: 8px 15px; outline: none; text-align: left; color: #0f0f0f; font-weight: 500; }
+#chat-input:focus { border: 2px solid #00008B; box-shadow: 0 0 10px #00008B; }
+
+#chat-window {
+    position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;
+    background: white; z-index: 9999; display: flex; flex-direction: column; overflow: hidden;
+}
+
+.main-footer { background: #057b5a; color: white; padding: 50px 20px; text-align: center; margin-top: 40px; border-top: 1px solid #a7a7aa; }
+.social-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
+.social-links a { text-decoration: none; color: #f5f3f3; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 13px; }
+
+.bot-msg { background: white; color: black; padding: 12px; border-radius: 15px 15px 15px 5px; border-left: 4px solid #000080; align-self: flex-start; max-width: 85%; font-size: 13px; }
+.user-msg { background: #00008B; color: white; padding: 10px; border-radius: 15px 15px 5px 15px; align-self: flex-end; max-width: 80%; font-size: 13px; }
+
+.typing { display: flex; gap: 4px; padding: 15px; }
+.dot { width: 7px; height: 7px; background: #00008B; border-radius: 50%; animation: bounce 0.6s infinite alternate; }
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+
+.rainbow-text span { font-weight: bold; animation: rainbow-animation 10s linear infinite; }
+@keyframes rainbow-animation {
+    0% { color: #ff0000; } 40% { color: #00ff00; } 100% { color: #ff0000; }
+}
+
+#register-page { display: flex; justify-content: center; align-items: center; height: 100vh; background: var(--bg); }
+.reg-card { background: #fff; padding: 30px; border-radius: 25px; width: 85%; max-width: 350px; text-align: center; }
+input { width: 100%; padding: 12px; margin-top: 10px; border: 1px solid #ddd; border-radius: 20px; outline: none; text-align: center; }
