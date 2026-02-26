@@ -108,6 +108,16 @@ window.onload = () => {
     if(saved) { user = JSON.parse(saved); startApp(); }
 };
 
+// Koodhkan wuxuu siinayaa button kasta "Dareen riixid"
+document.querySelectorAll('button, .dalbo-btn, .main-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        this.classList.add('push-animation');
+        setTimeout(() => {
+            this.classList.remove('push-animation');
+        }, 200);
+    });
+});
+
 function startApp() {
     document.getElementById("register-page").classList.add("hidden");
     document.getElementById("shop-page").classList.remove("hidden");
