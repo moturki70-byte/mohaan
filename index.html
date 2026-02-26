@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="so">
 <head>
-<meta charset="UTF-8">
-<title>MACRUUF SHOP</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <title>MACRUUF SHOP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
 <div id="register-page">
     <div class="reg-card">
         <h2 style="color: var(--primary);">MACRUUF SHOP</h2>
@@ -28,40 +33,41 @@
     </header>
 
     <div class="container">
-        <input id="search" placeholder="🔍 Raadi alaabta aad rabto..." onkeyup="globalSearch()" style="border: 2px solid var(--primary); margin-bottom:15px; background: #fff;">
+        <input id="search" placeholder="🔍 Raadi alaabta aad rabto..." onkeyup="globalSearch()">
         <div id="products-grid" class="grid"></div>
     </div>
-<div id="chat-icon" onclick="toggleChat()">💬</div>
 
-<div id="chat-window" class="hidden">
-    <div style="background:#00008B; color:#F5F5F5; padding:12px 15px; font-weight:bold; display:flex; justify-content:space-between; align-items:center;">
-        <span style="font-size: 14px;">MACRUUF SHOP AI</span>
-        <div style="display: flex; gap: 15px; align-items: center;">
-            <span onclick="clearChat()" title="Tirtir sheekada" style="cursor:pointer; font-size:18px;">🗑️</span>
-            <span onclick="toggleChat()" style="cursor:pointer; font-size:24px;">×</span>
+    <div id="chat-icon" onclick="toggleChat()">💬</div>
+
+    <div id="chat-window" class="hidden">
+        <div style="background:#00008B; color:#F5F5F5; padding:12px 15px; font-weight:bold; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size: 14px;">MACRUUF SHOP AI</span>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <span onclick="clearChat()" title="Tirtir sheekada" style="cursor:pointer; font-size:18px;">🗑️</span>
+                <span onclick="toggleChat()" style="cursor:pointer; font-size:24px;">×</span>
+            </div>
+        </div>
+        <div id="chat-body"></div>
+        <div style="padding:10px; border-top:1px solid #eee; display:flex; gap:5px; background: white;">
+            <input id="chat-input" type="text" placeholder="Qor magaca alaabta...">
+            <button onclick="handleChat()" style="background:#000080; color:white; border:none; border-radius:50%; width:35px; height:35px; cursor:pointer;">🦁</button>
         </div>
     </div>
-    <div id="chat-body"></div>
-    <div style="padding:10px; border-top:1px solid #eee; display:flex; gap:5px; background: white;">
-        <input id="chat-input" type="text" placeholder="Qor magaca alaabta..." style="flex:1; border:1px solid #0f0f0f; border-radius:20px; padding:8px 15px; outline:none;">
-        <button onclick="handleChat()" style="background:#000080; color:white; border:none; border-radius:50%; width:35px; height:35px; cursor:pointer;">🦁</button>
-    </div>
-</div>
-    <div id="sales-report-page" class="hidden container" style="background:#fff; padding:20px; border-radius:15px; margin-top:20px; border:2px solid #28a745; position: fixed; top: 10%; left: 5%; width: 90%; z-index: 2000; box-shadow: 0 5px 20px rgba(0,0,0,0.3);">
+
+    <div id="sales-report-page" class="hidden container">
         <h2 style="text-align:center; color:#28a745;">📊 XISAABTA MAANTA</h2>
         <hr>
-        <div id="sales-summary" style="font-size:18px; line-height:1.6;">
+        <div id="sales-summary">
             <p>🔢 <strong>Dalabka xiga:</strong> #<span id="today-orders">0</span></p>
             <p>💵 <strong>Total USD:</strong> <span id="today-usd" style="color:green; font-weight:bold;">$0.00</span></p>
             <p>💰 <strong>Total SSO:</strong> <span id="today-sso" style="color:orange; font-weight:bold;">0 SSO</span></p>
         </div>
-        <button onclick="hideSalesReport()" style="background:#0000CD; color:white; border:none; padding:15px; width:100%; border-radius:10px; cursor:pointer; font-weight:bold; margin-top:10px;">XIR XISAABTA</button>
-        <button onclick="resetDailySales()" style="background:#ff4d4d; color:white; border:none; padding:10px; width:100%; border-radius:10px; margin-top:15px; cursor:pointer; font-size:12px;">🔴 TIRTIR XISAABTA (BERRI BILOW)</button>
+        <button onclick="hideSalesReport()" class="report-close">XIR XISAABTA</button>
+        <button onclick="resetDailySales()" class="report-reset">🔴 TIRTIR XISAABTA (BERRI BILOW)</button>
     </div>
 
-    <button onclick="showSalesReport()" style="position:fixed; bottom:20px; left:20px; background:#057b5a; color:white; border:none; border-radius:50%; width:60px; height:60px; font-size:24px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor:pointer; z-index:1000;">📊</button>
+    <button onclick="showSalesReport()" class="floating-report-btn">📊</button>
 </div>
-
 
 <div id="cart-page" class="hidden container">
     <h2 style="text-align:center; color: var(--primary);">CASH | REGISTER</h2>
@@ -71,9 +77,26 @@
         <p>$ : <span id="finalUsd" class="price-usd">0</span></p>
         <p>SSO : <span id="finalSso" class="price-sso">0</span></p>
         <button class="main-btn" onclick="sendWhatsApp()">✅ WHATSAPP KU DIR DALABKAN</button>
-        <div class="shop-container"></div>
-        <button onclick="backToShop()" style="background:none; color:#045b43; border:none; padding:15px; width:100%; font-weight:bold; cursor:pointer;">← SUUQA KU NOQO</button>
-        <button onclick="clearCart()" style="background:#c5d303; color:rgb(21, 21, 21); border:none; padding:15px; width:100%; border-radius:30px; margin-top:10px; font-weight:bold; cursor:pointer; text-transform:uppercase;">🗑️ NADIIFI DALABKAN (SAVE)</button>
-        <button onclick="editUserInfo()" style="background:#00008B; color:rgb(253, 251, 251); border:none; padding:15px; width:100%; border-radius:30px; margin-top:10px; font-weight:bold; cursor:pointer;">✏️ DIWAAN GALI MACAMIL CUSUB</button>
+        <button onclick="backToShop()" class="secondary-btn">← SUUQA KU NOQO</button>
+        <button onclick="clearCart()" class="warning-btn">🗑️ NADIIFI DALABKAN (SAVE)</button>
+        <button onclick="editUserInfo()" class="info-btn">✏️ DIWAAN GALI MACAMIL CUSUB</button>
     </div>
 </div>
+
+<footer class="main-footer">
+    <h2 class="footer-title">MACRUUF SHOP</h2>
+    <div class="social-links">
+        <a href="#" class="icon facebook"><i class="fab fa-facebook"></i><span>Facebook</span></a>
+        <a href="#" class="icon tiktok"><i class="fab fa-tiktok"></i><span>TikTok</span></a>
+        <a href="#" class="icon youtube"><i class="fab fa-youtube"></i><span>YouTube</span></a>
+        <a href="#" class="icon whatsapp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+    </div>
+    <div class="footer-credits">
+        <p>©️ 2026 Macruuf Shop. All Rights Reserved.</p>
+        <p class="rainbow-text">Made with ❤️ by <span>Mohamed Abdikariim Abdi</span></p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
