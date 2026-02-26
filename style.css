@@ -1,5 +1,5 @@
 :root { --primary: #045b43; --secondary: #9ca4a2; --bg: #045b43; --green: #28a745; --orange: #f37e09; }
-body{font-family: 'Segoe UI', Arial, sans-serif; margin:0; background: var(--bg); color:#0f0f0f; height: 100vh; overflow-x: hidden; overflow-y: auto;}
+body{font-family: 'Segoe UI', Arial, sans-serif; margin:0; background: var(--bg); color:#0f0f0f; height: 100vh; overflow-x: hidden;}
 
 .main-btn, .dalbo-btn {
     background: var(--primary);
@@ -10,112 +10,277 @@ body{font-family: 'Segoe UI', Arial, sans-serif; margin:0; background: var(--bg)
     font-weight: bold;
     cursor: pointer;
     border: 4px solid #fbfbfd; 
+    animation: borderRotate 2s linear infinite;
     transition: all 0.3s ease;
     outline: none;
     text-transform: uppercase;
 }
-
-#chat-window button:active { background: #0000CD !important; transform: scale(0.9); }
+#chat-window button:active {
+    background: #0000CD !important; /* Wuxuu noqonayaa buluug xooggan marka la gujiyo */
+    transform: scale(0.9);
+}
 .dalbo-btn { padding: 8px; font-size: 9px; margin-top: 5px; border-width: 3px; }
 .main-btn:active, .dalbo-btn:active { transform: scale(0.95); }
 
 header { background: var(--primary); color: #fff; padding: 10px; position: sticky; top: 0; z-index: 1000; }
 .user-info-bar { background: rgba(0,0,0,0.15); padding: 8px; border-radius: 8px; font-size: 11px; display: flex; justify-content: space-between; margin-bottom: 10px; }
 header h1 { text-align: center; margin: 5px 0; font-size: 18px; }
+/* 1. Product scroll (Halkan ku dar ama ku baddel body iyo grid) */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif; 
+    margin:0; 
+    background: var(--bg); 
+    color:#045b43; 
+    height: 100vh; 
+    overflow-x: hidden; /* Wax gees u dhaqaaqaya ma jiro */
+    overflow-y: auto;   /* Kor iyo hoos kaliya */
+}
 
+/* 2. Search ballaaran iyo Iftiin marka la taabto */
 #search {
-    width: 100%; padding: 12px; box-sizing: border-box; border: 2px solid var(--primary); 
-    margin-bottom:15px; background: #fff; border-radius: 25px; transition: all 0.3s ease; outline: none;
-}
-/* --- 1. Iftiinka Guryaha Magaca iyo Lambarka (Focus Effect) --- */
-.reg-card input {
-    transition: all 0.3s ease-in-out;
-    border: 2px solid #ddd;
-}
-
-.reg-card input:focus {
-    border-color: var(--primary);
-    /* Iftiin cagaar ah oo hareeraha ka soo baxa */
-    box-shadow: 0 0 15px rgba(4, 91, 67, 0.4); 
-    transform: translateY(-2px); /* Wax yar ayuu kor u soo kacayaa */
-    background-color: #f9fffb; /* Midabka dhexda oo xoogaa isbedela */
-}
-
-/* --- 2. Dhaqdhaqaaqa Button-yada marka la taabto (Interactive Buttons) --- */
-/* Tan waxay u shaqaynaysaa dhammaan button-yada: Main, Dalbo, iyo Chat */
-button, .main-btn, .dalbo-btn, #chat-icon, nav span {
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
-    cursor: pointer;
+    width: 100%; /* Inuu wada gaaro geesaha */
+    padding: 12px;
+    box-sizing: border-box; /* Inuusan dhumucda dhaafin */
+    border: 2px solid var(--primary); 
+    margin-bottom:15px; 
+    background: #fff;
+    border-radius: 25px;
+    transition: all 0.3s ease;
     outline: none;
 }
 
-/* Marka la riixo (Click ama Tap) */
-button:active, .main-btn:active, .dalbo-btn:active, #chat-icon:active, nav span:active {
-    transform: scale(0.92); /* Inuu yaraado sidii wax la riixay */
-    box-shadow: inset 0 3px 5px rgba(0,0,0,0.2); /* Hoos u dhac gudaha ah */
+#search:focus {
+    box-shadow: 0 0 20px #101010, 0 0 7px var(--primary); /* Iftiinka dhexda iyo hareeraha */
+    border-color: #f7f9f7;
 }
 
-/* Marka mouse-ka la saaro (Laptop ahaan) */
-@media (hover: hover) {
-    .main-btn:hover, .dalbo-btn:hover {
-        filter: brightness(1.1);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
+/* 3. In Buttons-ka hoose la wada arko (Footer/Container fix) */
+.container { 
+    padding: 17px; 
+    padding-bottom: 100px; /* Boos dheeraad ah oo badhamada hoose looga tago */
 }
 
-/* Animation yar oo ruxid ah marka la riixo (Optional) */
-@keyframes button-push {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.9); }
-    100% { transform: scale(1); }
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 8px; 
+    overflow-x: hidden; /* Hubinta in alaabtu gees u bixin */
 }
-
-.push-animation {
-    animation: button-push 0.2s linear;
-}
-#search:focus { box-shadow: 0 0 20px #101010, 0 0 7px var(--primary); border-color: #f7f9f7; }
-
-.container { padding: 17px; padding-bottom: 100px; }
-.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; overflow-x: hidden; }
-
 nav { display: flex; justify-content: center; gap: 10px; overflow-x: auto; padding: 5px 0; scrollbar-width: none; }
 nav span { cursor: pointer; font-size: 11px; padding: 5px 10px; border-radius: 20px; background: rgba(255,255,255,0.1); white-space: nowrap; }
 nav span.active { background: var(--secondary); color: white; font-weight: bold; }
 
+.container { padding: 12px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .card { background: #fff; padding: 8px; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; flex-direction: column; text-align: center; border: 1px solid #eee; position: relative; }
 .card h4 { margin: 5px 0; font-size: 10px; height: 30px; overflow: hidden; line-height: 1.2; }
 .hidden { display: none !important; }
 
 #chat-icon {
-    position: fixed; bottom: 20px; right: 20px; background: #057b5a; color: white;
-    width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 30px; cursor: pointer; z-index: 9999; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    position: fixed; bottom: 20px; right: 20px;
+    background: #057b5a; color: white;
+    width: 60px; height: 60px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px; cursor: pointer; z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+#chat-input {
+    flex: 1; 
+    border: 1px solid #ddd; 
+    border-radius: 20px; 
+    padding: 8px 15px; 
+    outline: none;
+    
+    /* 1. Jihada qoraalka: 'left' waa bidix, 'right' waa midig */
+    text-align: left; 
+    
+    /* 2. Midabka farta la qorayo: Waxaan ka dhignay Navy Blue */
+    color: #0f0f0f; 
+    
+    /* In qoraalku yara dhumuc yeesho (ikhiyaari) */
+    font-weight: 500; 
 }
 
-#chat-input { flex: 1; border: 1px solid #ddd; border-radius: 20px; padding: 8px 15px; outline: none; text-align: left; color: #0f0f0f; font-weight: 500; }
-#chat-input:focus { border: 2px solid #00008B; box-shadow: 0 0 10px #00008B; }
-
+/* Marka macmiilku wax qorayo, placeholder-ka ha iska cawlaanado */
+#chat-input::placeholder {
+    color: #999;
+    text-align: left;
+}
+#chat-input:focus {
+    border: 10px solid #00008B;
+    box-shadow: 0 0 10px #00008B;
+}
 #chat-window {
-    position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;
-    background: white; z-index: 9999; display: flex; flex-direction: column; overflow: hidden;
+    position: fixed;
+    top: 0;      /* Waxay ka bilaabaysaa xagga ugu sarreeya */
+    bottom: 0;   /* Waxay gaadhsiinaysaa xagga ugu hooseeya */
+    left: 0;     /* Waxay ka bilaabaysaa bidixda fog */
+    right: 0;    /* Waxay gaadhsiinaysaa midigta fog */
+    width: 100%; /* Inuu 100% ballaca wada qaato */
+    height: 100%;/* Inuu 100% dhererka wada qaato */
+    background: white;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 0; /* Ka saar wareegga geesaha si uusan dalool u dhicin */
+}
+/* Styling-ka Footer-ka */
+.main-footer {
+    background: #057b5a;
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+    margin-top: 40px; /* Inuu ka fogaado alaabta ka sarreysa */
+    border-top: 1px solid #a7a7aa; /* Xariiq Navy Blue ah */
 }
 
-.main-footer { background: #057b5a; color: white; padding: 50px 20px; text-align: center; margin-top: 40px; border-top: 1px solid #a7a7aa; }
-.social-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
-.social-links a { text-decoration: none; color: #f5f3f3; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 13px; }
+.footer-title {
+    color: #4db8ff;
+    font-size: 22px;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
 
-.bot-msg { background: white; color: black; padding: 12px; border-radius: 15px 15px 15px 5px; border-left: 4px solid #000080; align-self: flex-start; max-width: 85%; font-size: 13px; }
-.user-msg { background: #00008B; color: white; padding: 10px; border-radius: 15px 15px 5px 15px; align-self: flex-end; max-width: 80%; font-size: 13px; }
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
 
-.typing { display: flex; gap: 4px; padding: 15px; }
+.social-links a {
+    text-decoration: none;
+    color: #f5f3f3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.social-links i {
+    font-size: 30px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* --- Saamaynta Marka Farta la saaro (Hover) --- */
+
+/* Facebook */
+.facebook:hover { color: #1877F2 !important; }
+.facebook:hover i { transform: translateY(-8px); }
+
+/* TikTok */
+.tiktok:hover { color: #fafafa !important; }
+.tiktok:hover i { transform: translateY(-8px); }
+
+/* YouTube - Sidii sawirkaaga Casaan noonaya */
+.youtube:hover { color: #FF0000 !important; }
+.youtube:hover i { transform: translateY(-8px); }
+
+/* WhatsApp */
+.whatsapp:hover { color: #25D366 !important; }
+.whatsapp:hover i { transform: translateY(-8px); }
+
+.footer-credits p {
+    font-size: 12px;
+    color: #f4f0f0;
+    margin: 5px 0;
+}
+
+.footer-credits span {
+    color: #eeeff0;
+}
+#chat-body {
+    flex: 1; padding: 15px; overflow-y: auto;
+    background: #f9f9f9; display: flex; flex-direction: column; gap: 10px;
+}
+
+/* Fariimaha Caadiga ah */
+.bot-msg { 
+    background: white; color: black; padding: 12px; 
+    border-radius: 15px 15px 15px 5px; border-left: 4px solid lab(#000080);
+    align-self: flex-start; max-width: 85%; font-size: 13px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Animation-ka Alaabta la helay oo keliya */
+.item-found {
+    animation: itemPop 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-left: 4px solid lch(#000080);
+    background: #f0eeee;
+}
+
+@keyframes itemPop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.user-msg { 
+    background: #00008B; color: white; padding: 10px; 
+    border-radius: 15px 15px 5px 15px; align-self: flex-end; 
+    max-width: 80%; font-size: 13px;
+}
+
+/* Typing Animation (Dhibco Keliya) */
+.typing { display: flex; gap: 4px; padding: 15px; align-self: flex-start; }
 .dot { width: 7px; height: 7px; background: #00008B; border-radius: 50%; animation: bounce 0.6s infinite alternate; }
-@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
 
-.rainbow-text span { font-weight: bold; animation: rainbow-animation 10s linear infinite; }
-@keyframes rainbow-animation {
-    0% { color: #ff0000; } 40% { color: #00ff00; } 100% { color: #ff0000; }
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
 }
 
+.prod-name { color: red !important; font-weight: bold; }
+select { width: 100%; padding: 5px; border-radius: 8px; font-size: 9px; margin-bottom: 5px; border: 1px solid #ddd; }
+.qty-box { display: flex; align-items: center; justify-content: space-between; background: #f0f0f0; border-radius: 20px; padding: 2px 8px; margin-bottom: 5px; }
+.qty-box button { border: none; background: none; font-size: 16px; font-weight: bold; color: var(--primary); cursor: pointer; }
+@media screen and (max-width: 480px) {
+    #chat-window {
+        bottom: 0 !important;
+        right: 0 !important;
+        width: 100vw !important; 
+        height: 100dvh !important; /* Wuxuu buuxinayaa shaashadda */
+        border-radius: 0 !important;
+        z-index: 10000 !important; /* Hubi inuu sareeyo */
+    }
+
+    /* Waxaan u baahanahay badhanka xiritaanka inuu muuqdo */
+    #close-chat {
+        display: block !important;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+        color: rgb(249, 245, 245); /* Ama midabka ku haboon */
+    }
+}
+.cart-item { background: #fff; padding: 15px; border-radius: 12px; margin-bottom: 10px; border-left: 5px solid var(--primary); position: relative; }
+.del-btn { position: absolute; right: 10px; top: 10px; color: #ff4d4d; border: none; background: none; font-size: 20px; }
+.total-card { background: #fff; padding: 20px; border-radius: 15px; border: 2px dashed var(--primary); margin-top: 20px; text-align: center; }
+
+.price-usd { color: var(--green) !important; font-weight: bold; }
+.price-sso { color: var(--orange) !important; font-weight: bold; }
+/* Animation-ka midabada isbeddelaya */
+@keyframes rainbow-animation {
+    0% { color: #ff0000; }   /* Cas */
+    20% { color: #ffd700; }  /* Dahabi */
+    40% { color: #00ff00; }  /* Cagaar */
+    60% { color: #00ffff; }  /* Cyan */
+    80% { color: #ff00ff; }  /* Pink/Purple */
+    100% { color: #ff0000; } /* Dib ugu laabo Cas */
+}
+
+.rainbow-text span {
+    font-weight: bold;
+    animation: rainbow-animation 10s linear infinite; /* 4s waa xawaaraha isbeddelka */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);  /* Wax yar oo dhalaal ah */
+}
+.hidden { display: none !important; }
 #register-page { display: flex; justify-content: center; align-items: center; height: 100vh; background: var(--bg); }
-.reg-card { background: #fff; padding: 30px; border-radius: 25px; width: 85%; max-width: 350px; text-align: center; }
+.reg-card { background: #fff; padding: 30px; border-radius: 25px; width: 85%; max-width: 350px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
 input { width: 100%; padding: 12px; margin-top: 10px; border: 1px solid #ddd; border-radius: 20px; outline: none; text-align: center; }
